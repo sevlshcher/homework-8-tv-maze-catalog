@@ -13,7 +13,7 @@ export default class ShowPreview extends PureComponent {
             <div className={`${styles.container} t-preview`}>
                 <div>
                     <Link to={`/shows/${id}`} className='t-link'>{name}</Link>
-                    { image && <img src={image} alt={name} />}
+                    { image && <img src={image.medium} alt={name} />}
                 </div>
                 <div>
                     <p dangerouslySetInnerHTML={{ __html: summary }}></p>

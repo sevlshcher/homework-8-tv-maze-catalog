@@ -45,15 +45,9 @@ class Search extends PureComponent {
                         >Найти</button>
                     </div>
                 </div>
-                <div className={`${styles.searchPanel} t-search-result`}>
+                <div className={`t-search-result ${styles.searchPanel}`}>
                     { soap && soap.map(item =>
-                        <ShowPreview
-                            key={item.id}
-                            id={item.id}
-                            name={item.name}
-                            image={item.image}
-                            summary={item.summary}
-                        />
+                        <ShowPreview {...item} key={item.id}/>
                     )}
                 </div>
             </>

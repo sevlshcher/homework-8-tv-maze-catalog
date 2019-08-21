@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
-import { Redirect, Switch, Route } from 'react-router-dom'
+import { Switch, Route, withRouter } from 'react-router-dom'
 import Search from '../Search'
-// import ShowPage from '../ShowPage'
+import ShowPage from '../ShowPage'
 import './AppRouter.css'
 
 // Реализуйте роутер
@@ -14,12 +14,11 @@ class AppRouter extends PureComponent {
             <div className='App'>
                 <Switch>
                     <Route exact path='/' component={Search} />
-                    {/* <Route path='/show/:id' component={ShowPage} /> */}
-                    <Redirect from='*' to='/' />
+                    <Route path='/shows/:id' component={ShowPage} />
                 </Switch>
             </div>
         )
     }
 }
 
-export default AppRouter
+export default withRouter(AppRouter)

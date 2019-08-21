@@ -8,7 +8,21 @@ import { combineReducers } from 'redux'
 
 const soap = handleActions({
     [showSoapRequest]: () => [],
-    [showSoapSuccess]: (_state, action) => action.payload
+    [showSoapSuccess]: (_state, action) => {
+        const data = action.payload
+        return {
+            name: data.name,
+            image: data.image,
+            summary: data.summary,
+            cast: data._embedded.cast.map(item => {
+                return {
+                    id: item.person.id,
+                    name: item.person.name,
+                    image: item.person.image
+                }
+            })
+        }
+    }
 }, [])
 
 const isLoading = handleActions({
@@ -17,13 +31,10 @@ const isLoading = handleActions({
     [showSoapFailure]: () => false
 }, false)
 
-const error = handleActions({
-    [showSoapRequest]: () => null,
-    [showSoapSuccess]: (_state, action) => action.payload
-}, null)
-
 export default combineReducers({
     soap,
-    isLoading,
-    error
+    isLoading
 })
+
+export const getSoap = state => state.showReducer.soap
+export const getIsLoading = state => state.showReducer.isLoading
